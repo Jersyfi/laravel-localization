@@ -1,0 +1,32 @@
+{
+    "name": "jersyfi/laravel-localization",
+    "description": "A package to localize a laravel application",
+    "keywords": [
+        "jersyfi",
+        "laravel-localization",
+        "laravel",
+        "localization",
+        "locale",
+        "multilangual"
+    ],
+    "homepage": "https://github.com/jersyfi/laravel-localization",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jérôme Bastian Winkel",
+            "email": "thejersyy@gmail.com",
+            "homepage": "https://jersyfi.de"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jersyfi\\Localization\\LocalizationServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php" : "^8.0"
+    },
+}
