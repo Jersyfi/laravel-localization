@@ -4,7 +4,9 @@ namespace Jersyfi\Localization;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Router;
-use Jersyfi\Localization\Http\Middleware\Localization;
+use Jersyfi\Localization\Http\Middleware\Locale;
+use Jersyfi\Localization\Exceptions\LocalesNotDefined;
+use Jersyfi\Localization\Exceptions\UnsupportedLocale;
 
 class LocalizationServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,11 @@ class LocalizationServiceProvider extends ServiceProvider
 
         // Register Controller
         $this->app->make('Jersyfi\Localization\Http\Controllers\LocaleController');
+
+        // Bind Facade
+        $this->app->singleton('localization', function ($app) {
+            return new Localization($app->make('request'));
+        });
     }
 
     /**
@@ -38,6 +45,33 @@ class LocalizationServiceProvider extends ServiceProvider
 
         // Boot Middleware
         $router = $this->app->make(Router::class);
-        $router->aliasMiddleware('locale', Localization::class);
+        $router->aliasMiddleware('locale', Locale::class);
+
+        $this->configHasLocales();
+        $this->LocaleInLocales();
+    }
+
+    /**
+     * Check if the Locales are defined
+     * 
+     * @throws LocalesNotDefined
+     */
+    public function configHasLocales()
+    {
+        if (count(config('localization.locales')) < 1) {
+            throw LocalesNotDefined::make();
+        }
+    }
+
+    /**
+     * Check if the App locale is in Locales
+     * 
+     * @throws UnsupportedLocale
+     */
+    public function LocaleInLocales()
+    {
+        if (!in_array(config('app.locale'), config('localization.locales'))) {
+            throw UnsupportedLocale::make();
+        }
     }
 }

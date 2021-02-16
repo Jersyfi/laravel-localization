@@ -18,15 +18,23 @@
             "homepage": "https://jersyfi.de"
         }
     ],
+    "require": {
+        "php" : "^8.0",
+        "laravel/framework": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jersyfi\\Localization\\": "src"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
                 "Jersyfi\\Localization\\LocalizationServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "Localization": "Jersyfi\\Localization\\Facades\\Localization"
+            }
         }
-    },
-    "minimum-stability": "dev",
-    "require": {
-        "php" : "^8.0"
     }
 }

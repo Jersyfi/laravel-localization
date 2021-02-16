@@ -42,9 +42,6 @@ class LocaleController extends Controller
         $url = URL::previous();
         $url = str_replace('/'. App::getLocale(), '/' . $locale, $url);
 
-        //Route Name mitgeben und Default Locale umändern
-        //danach die Route neu laden
-
         session()->put('locale', $locale);
         App::setLocale($locale);
 
