@@ -3,13 +3,15 @@
 namespace Jersyfi\Localization;
 
 use Illuminate\Support\ServiceProvider;
+use Jersyfi\Localization\HasExceptions;
 use Illuminate\Routing\Router;
 use Jersyfi\Localization\Http\Middleware\Locale;
-use Jersyfi\Localization\Exceptions\LocalesNotDefined;
-use Jersyfi\Localization\Exceptions\UnsupportedLocale;
+use Jersyfi\Localization\Console\InstallLocalization;
 
 class LocalizationServiceProvider extends ServiceProvider
 {
+    use HasExceptions;
+
     /**
      * Register services.
      *
@@ -47,31 +49,14 @@ class LocalizationServiceProvider extends ServiceProvider
         $router = $this->app->make(Router::class);
         $router->aliasMiddleware('locale', Locale::class);
 
-        //$this->configHasLocales();
-        //$this->LocaleInLocales();
+        // Register the command if we are using the application via the CLI
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                InstallLocalization::class,
+            ]);
+        }
+
+        $this->configHasLocales();
+        $this->LocaleInLocales();
     }
-
-    /**
-     * Check if the Locales are defined
-     * 
-     * @throws LocalesNotDefined
-     */
-    /* public function configHasLocales()
-    {
-        if (count(config('localization.locales')) < 1) {
-            throw LocalesNotDefined::make();
-        }
-    } */
-
-    /**
-     * Check if the App locale is in Locales
-     * 
-     * @throws UnsupportedLocale
-     */
-    /* public function LocaleInLocales()
-    {
-        if (!in_array(config('app.locale'), config('localization.locales'))) {
-            throw UnsupportedLocale::make();
-        }
-    } */
 }
