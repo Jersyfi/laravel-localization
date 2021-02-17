@@ -9,6 +9,11 @@ return [
         'en',
         'de'
     ],
+    
+    /**
+     * Redirect to default locale when not found
+     */
+    'redirect_default' => false,
 
     /**
      * Detect user locale via http header
