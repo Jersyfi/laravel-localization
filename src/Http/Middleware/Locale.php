@@ -2,10 +2,11 @@
 
 namespace Jersyfi\Localization\Http\Middleware;
 
-use Closure;
-use App;
 use Illuminate\Http\Request;
+use Closure;
+use Jersyfi\Localization\Facades\Localization;
 use Illuminate\Support\Facades\URL;
+use App;
 
 class Locale
 {
@@ -18,10 +19,7 @@ class Locale
      */
     public function handle($request, Closure $next)
     {
-        if (!in_array(
-            $locale = $request->locale,
-            config('localization.locales')
-        )) {
+        if (!app('localization')->localeIsValid($locale = $request->locale)) {
             abort(404);
         }
 

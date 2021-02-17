@@ -29,22 +29,4 @@ class LocaleController extends Controller
 
         return redirect('/' . App::getLocale());
     }
-
-    /**
-     * Change the current Locale.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return route
-     */
-    public function change(Request $request)
-    {
-        $locale = $request->localeChange;
-        $url = URL::previous();
-        $url = str_replace('/'. App::getLocale(), '/' . $locale, $url);
-
-        session()->put('locale', $locale);
-        App::setLocale($locale);
-
-        return redirect($url);
-    }
 }
