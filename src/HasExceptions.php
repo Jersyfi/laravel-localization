@@ -2,6 +2,9 @@
 
 namespace Jersyfi\Locaization;
 
+use Jersyfi\Localization\Exceptions\LocalesNotDefined;
+use Jersyfi\Localization\Exceptions\UnsupportedLocale;
+
 trait HasExceptions {
     /**
      * Check if the Locales are defined
