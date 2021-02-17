@@ -3,15 +3,12 @@
 namespace Jersyfi\Localization;
 
 use Illuminate\Support\ServiceProvider;
-use Jersyfi\Localization\HasExceptions;
 use Illuminate\Routing\Router;
 use Jersyfi\Localization\Http\Middleware\Locale;
 use Jersyfi\Localization\Console\InstallLocalization;
 
 class LocalizationServiceProvider extends ServiceProvider
 {
-    use HasExceptions;
-
     /**
      * Register services.
      *
@@ -55,8 +52,5 @@ class LocalizationServiceProvider extends ServiceProvider
                 InstallLocalization::class,
             ]);
         }
-
-        $this->configHasLocales();
-        $this->LocaleInLocales();
     }
 }
