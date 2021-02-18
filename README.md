@@ -1,5 +1,7 @@
 # laravel-localization
 
+![Coveralls github](https://img.shields.io/coveralls/github/jersyfi/laravel-localization)
+
 ## Initialise
 
 `php artisan vendor:publish --provider="Jersyfi\Localization\LocalizationServiceProvider" --tag="config"`
