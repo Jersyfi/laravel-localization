@@ -7,6 +7,7 @@ use Jersyfi\Localization\Exceptions\LocalesNotDefined;
 use Jersyfi\Localization\Exceptions\UnsupportedLocale;
 use Illuminate\Support\Facades\Route;
 use Arr;
+use App;
 
 class Localization
 {
@@ -86,18 +87,23 @@ class Localization
     }
 
     /**
-     * Check if the locale is valid
+     * Check if the locales are valid
      *
-     * @param string locale
+     * @param array locales
      *
      * @return bool
      */
-    public function localeIsValid(string $locale): bool
-    {        
-        return in_array(
-            $locale,
-            $this->getLocales()
-        );
+    public function localeIsValid(...$locales): bool
+    {
+        foreach ($locales as $key) {
+            if (!in_array(
+                $key,
+                $this->getLocales()
+            )) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -119,7 +125,7 @@ class Localization
      */
     private function localesHasDefaultLocale()
     {
-        if (!$this->localeIsValid($this->getDefaultLocale())) {
+        if (!$this->localeIsValid($this->getDefaultLocale(), config('app.locale'))) {
             throw UnsupportedLocale::make();
         }
     }

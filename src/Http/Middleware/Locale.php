@@ -20,7 +20,11 @@ class Locale
     public function handle($request, Closure $next)
     {
         if (!Localization::localeIsValid($locale = $request->locale)) {
-            abort(404);
+            if (!config('localization.redirect_default', false)) {
+                abort(404);
+            }
+            
+            return redirect(Localization::currentRouteDefaultLocaleURL());
         }
 
         $request->session()->put('locale', $locale);

@@ -25,6 +25,6 @@ return [
      * Detect user locale via http header
      * When no locale is stored in session user gets redirected
      */
-    'detect_locale' => true,
+    'detect_locale' => false,
 
 ];

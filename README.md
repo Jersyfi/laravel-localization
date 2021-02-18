@@ -1,7 +1,5 @@
 # laravel-localization
 
-![Packagist Downloads](https://img.shields.io/packagist/dm/jersyfi/laravel-localization)
-
 ## Initialise
 
 `php artisan vendor:publish --provider="Jersyfi\Localization\LocalizationServiceProvider" --tag="config"`
@@ -33,6 +31,40 @@ Route::prefix('{locale}')
     }
 ```
 
+## Config
+```php
+<?php
+
+return [
+
+    /**
+     * Applications default locale need to be set because the config('app.locale')
+     * gives back the current locale and not the value from config
+     */
+    'default_locale' => 'de',
+
+    /**
+     * Application locales determines all locals that exists in the application
+     */
+    'locales' => [
+        'en',
+        'de'
+    ],
+    
+    /**
+     * Redirect to default locale when not found
+     */
+    'redirect_default' => false,
+
+    /**
+     * Detect user locale via http header
+     * When no locale is stored in session user gets redirected
+     */
+    'detect_locale' => false,
+
+];
+```
+
 
 ## All functions
 
@@ -55,5 +87,5 @@ Return the current Route URL with different locale
 Return the current Route URL with default locale
 `Localization::currentRouteDefaultLocaleURL()`
 
-Check if the locale is valid
+Check if the locales are valid
 `Localization::localeIsValid()`

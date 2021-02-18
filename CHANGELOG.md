@@ -2,6 +2,13 @@
 
 All notable changes to `laravel-localization` will be documented in this file
 
+## 1.5.0 - 2021-02-18
+
+- Added config value `localization.redirect_default`
+- Edited `Localization::localeIsValid()` to pass multiple locales at once
+- Edited `Localization::localesHasDefaultLocale()`
+- Edited Middleware `Locale` to redirect default locale when requested locale not found
+
 ## 1.4.0 - 2021-02-18
 
 - Removed HasExceptions

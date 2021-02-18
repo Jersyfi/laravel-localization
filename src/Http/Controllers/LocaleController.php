@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use App;
+use Localization;
 
 class LocaleController extends Controller
 {
@@ -16,17 +17,18 @@ class LocaleController extends Controller
      */
     public function localize(Request $request)
     {
+        $locales = Localization::getLocales();
+
         if ($request->session()->has('locale')) {
-            if (in_array(
-                $locale = $request->session()->get('locale'),
-                config('localization.locales')
-            )) {
-                App::setLocale($locale);
-            } else {
-                $request->session()->put('locale', App::getLocale());
-            }
+            $locale = $locale = $request->session()->get('locale');
+        } elseif (config('localization.detect_locale', false) && $request->header('Accept-Language')) {
+            $locale = $request->getPreferredLanguage($locales);
+        } else {
+            $locale = config('localization.default_locale', App::getLocale());
         }
 
-        return redirect('/' . App::getLocale());
+        $request->session()->put('locale', $locale);
+
+        return redirect('/'.$locale);
     }
 }
