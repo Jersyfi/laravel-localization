@@ -76,27 +76,40 @@ Route::prefix('{locale}')
 
 ### Helpers
 
+The helpers can be accesed directly by aliases or by facades.
 `Localization::`
-or
-`app('localization')->`
+\nor
+\n`app('localization')->`
 
 Return all available locales
-`Localization::getLocales()`
+```php
+Localization::getLocales()
+```
 
 Return application locale
-`Localization::getDefaultLocale()`
+```php
+Localization::getDefaultLocale()
+```
 
 Return all available locales without the default locale.
-`Localization::getLocalesWithoutDefault()`
+```php
+Localization::getLocalesWithoutDefault()
+```
 
 Return the current Route URL with different locale
-`Localization::currentRouteLocaleURL()`
+```php
+Localization::currentRouteLocaleURL()
+```
 
 Return the current Route URL with default locale
-`Localization::currentRouteDefaultLocaleURL()`
+```php
+Localization::currentRouteDefaultLocaleURL()
+```
 
 Check if the locales are valid
-`Localization::localeIsValid()`
+```php
+Localization::localeIsValid()
+```
 
 
 ## Examples
