@@ -51,9 +51,11 @@ return [
 ## How to use
 
 More information can be found in the original Laravel documentation with version 8.x.
-There you need to know everythin about [Routing](https://laravel.com/docs/8.x/routing) and [Localization](https://laravel.com/docs/8.x/localization). When you also want to have translatable models i prefere to use [laravel-translatable](https://github.com/spatie/laravel-translatable) from Spatie.
+There you need to know everything about [Routing](https://laravel.com/docs/8.x/routing) and [Localization](https://laravel.com/docs/8.x/localization). When you also want to have translatable models i prefere to use [laravel-translatable](https://github.com/spatie/laravel-translatable) from Spatie.
 
 ### Routing
+
+The middleware is using `redirect_default` to redirect any request when the requested locale was not in `locales`. To detect the browser language when entering the page for the first time the `LocaleController` is using `detect_locale`.
 
 You can redirect to the `default_locale` by accessing the `LocaleController` function called `localize` with the example:
 ```php
