@@ -60,7 +60,6 @@ You can redirect to the `default_locale` by accessing the `LocaleController` fun
 Route::get('/', [LocaleController::class, 'localize'])
     ->name('locale');
 ```
-
 To group a route it is the easiest way to set a prefix named `{locale}` together with the middleware `locale`.
 Inside this group you can set your own localized routes.
 An example to get this localized route group:
@@ -99,6 +98,26 @@ Check if the locales are valid
 
 
 ## Examples
+
+### Route to Home
+
+We create a simple index Route named `home` calling whatever you want. In this example we call a Controller. Then you can call your route from whereever you want with `route('home')`.
+```php
+Route::get('/', [LocaleController::class, 'localize'])
+    ->name('locale');
+
+Route::prefix('{locale}')
+    ->middleware('locale')
+    ->group(function () {
+
+        // your localized routes here
+        Route::get('/', [HomeController::class, 'index'])
+            ->name('home');
+    });
+```
+```html
+<a href="{{ route('home') }}">Home</a>
+```
 
 ### Create a canonical link
 
