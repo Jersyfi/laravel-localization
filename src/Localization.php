@@ -20,6 +20,22 @@ class Localization
         $this->configHasLocales();
         $this->localesHasDefaultLocale();
     }
+    
+    /**
+     * Return the given locale or the app locale with replaced separator
+     * 
+     * @param string locale
+     *
+     * @return string
+     */
+    public function getLocaleSlug(string $locale = null): string
+    {
+        if ($locale == null) {
+            $locale = App::getLocale();
+        }
+        
+        return str_replace('_', '-', $locale);
+    }
 
     /**
      * Return all available locales.
