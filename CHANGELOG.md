@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-localization` will be documented in this file
 
+## 1.5.1 - 2021-02-18
+
+- Edited `composer.json` wrong typing
+
 ## 1.5.0 - 2021-02-18
 
 - Added config value `localization.redirect_default`
