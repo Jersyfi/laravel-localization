@@ -21,9 +21,6 @@ class LocalizationServiceProvider extends ServiceProvider
             __DIR__.'/../config/localization.php', 'localization'
         );
 
-        // Register Controller
-        $this->app->make('Jersyfi\Localization\Http\Controllers\LocaleController');
-
         // Bind Facade
         $this->app->singleton('localization', function ($app) {
             return new Localization($app->make('request'));
@@ -40,17 +37,10 @@ class LocalizationServiceProvider extends ServiceProvider
         // Publish Configuration File
         $this->publishes([
             __DIR__.'/../config/localization.php' => config_path('localization.php'),
-        ]);
+        ], 'config');
 
         // Boot Middleware
         $router = $this->app->make(Router::class);
         $router->aliasMiddleware('locale', Locale::class);
-
-        // Register the command if we are using the application via the CLI
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                InstallLocalization::class,
-            ]);
-        }
     }
 }

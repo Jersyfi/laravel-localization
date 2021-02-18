@@ -4,7 +4,7 @@ namespace Jersyfi\Localization\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Closure;
-use Jersyfi\Localization\Facades\Localization;
+use Localization;
 use Illuminate\Support\Facades\URL;
 use App;
 
@@ -19,7 +19,7 @@ class Locale
      */
     public function handle($request, Closure $next)
     {
-        if (!app('localization')->localeIsValid($locale = $request->locale)) {
+        if (!Localization::localeIsValid($locale = $request->locale)) {
             abort(404);
         }
 

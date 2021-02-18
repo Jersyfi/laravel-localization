@@ -2,6 +2,17 @@
 
 All notable changes to `laravel-localization` will be documented in this file
 
+## 1.4.0 - 2021-02-18
+
+- Removed HasExceptions
+- Added `default_locale` to config localization
+- Added `Localization::getLocalesWithoutDefault()`
+- Added `Localization::currentRouteDefaultLocaleURL()`
+- Edited Exceptions UnsupportedLocale and LocalesNotDefined
+- Edited `Localization::getDefaultLocale()`
+- Edited `Localization::configHasLocales()` to private function
+- Edited `Localization::localesHasDefaultLocale()` to private function
+
 ## 1.3.0 - 2021-02-17
 
 - Removed Installation Commands

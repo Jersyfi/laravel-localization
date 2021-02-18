@@ -10,6 +10,6 @@ class UnsupportedLocale extends Exception
     {
         $locale = config('app.locale');
 
-        return new static("Laravel default locale `{$locale}` ist not in the config localization locales array");
+        return new static("Locale `{$locale}` ist not defined in locales array of config localization");
     }
 }

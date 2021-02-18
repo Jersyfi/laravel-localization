@@ -10,6 +10,6 @@ class LocalesNotDefined extends Exception
     {
         $localizationConfigPath = config_path('localization');
         
-        return new static("No locales found in config: `localitzation` at `{$localizationConfigPath}`");
+        return new static("No locales defined in config localitzation");
     }
 }

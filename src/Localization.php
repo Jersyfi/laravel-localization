@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Jersyfi\Localization\Exceptions\LocalesNotDefined;
 use Jersyfi\Localization\Exceptions\UnsupportedLocale;
 use Illuminate\Support\Facades\Route;
+use Arr;
 
 class Localization
 {
@@ -36,17 +37,33 @@ class Localization
      */
     public function getDefaultLocale(): string
     {
-        return config('app.locale', 'en');
+        return config('localization.default_locale');
     }
 
     /**
-     * Return the current Route URL with a different locale
+     * Return all available locales without the default locale.
+     * 
+     * @return array
+     */
+    public function getLocalesWithoutDefault(): array
+    {
+        foreach ($array = $this->getLocales() as $key => $value) {
+            if ($value == $this->getDefaultLocale()) {
+                unset($array[$key]);
+            }
+        }
+
+        return $array;
+    }
+
+    /**
+     * Return the current Route URL with different locale
      * 
      * @param string locale
      * 
      * @return string url
      */
-    public function currentLocaleRoute(string $locale): string
+    public function currentRouteLocaleURL(string $locale): string
     {
         $route = Route::current();
         $params = $route->parameters;
@@ -56,6 +73,16 @@ class Localization
             $route->getName(),
             $params
         );
+    }
+
+    /**
+     * Return the current Route URL with default locale
+     * 
+     * @return string url
+     */
+    public function currentRouteDefaultLocaleURL(): string
+    {
+        return $this->currentRouteLocaleURL($this->getDefaultLocale());
     }
 
     /**
@@ -78,7 +105,7 @@ class Localization
      * 
      * @throws LocalesNotDefined
      */
-    public function configHasLocales()
+    private function configHasLocales()
     {
         if (count($this->getLocales()) < 1) {
             throw LocalesNotDefined::make();
@@ -90,7 +117,7 @@ class Localization
      * 
      * @throws UnsupportedLocale
      */
-    public function localesHasDefaultLocale()
+    private function localesHasDefaultLocale()
     {
         if (!$this->localeIsValid($this->getDefaultLocale())) {
             throw UnsupportedLocale::make();
