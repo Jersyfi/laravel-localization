@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-localization` will be documented in this file
 
+## 1.6.0 - 2020-02-18
+
+- Added `Localization::getLocaleSlug` to replace seperator
+
 ## 1.5.1 - 2021-02-18
 
 - Edited `composer.json` invalid version constraint
