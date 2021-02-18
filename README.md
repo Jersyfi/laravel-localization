@@ -1,5 +1,17 @@
 # laravel-localization
 
+<p align="center">
+    <a href="https://packagist.org/packages/jersyfi/laravel-localization">
+        <img alt="Packagist Downloads" src="https://img.shields.io/packagist/dt/jersyfi/laravel-localization">
+    </a>
+    <a href="https://packagist.org/packages/jersyfi/laravel-localization">
+        <img alt="Packagist Version (custom server)" src="https://img.shields.io/packagist/v/jersyfi/laravel-localization">
+    </a>
+    <a href="https://packagist.org/packages/laravel/breeze">
+        <img alt="GitHub" src="https://img.shields.io/github/license/jersyfi/laravel-localization">
+    </a>
+</p>
+
 ## Initialise
 
 `php artisan vendor:publish --provider="Jersyfi\Localization\LocalizationServiceProvider" --tag="config"`
