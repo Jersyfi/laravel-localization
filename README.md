@@ -1,44 +1,21 @@
-# laravel-localization
+# A package to make your application localized
 
 ![Packagist Downloads](https://img.shields.io/packagist/dt/jersyfi/laravel-localization)
 ![Packagist Version](https://img.shields.io/packagist/v/jersyfi/laravel-localization)
 ![GitHub License](https://img.shields.io/github/license/jersyfi/laravel-localization)
 
-## Initialise
+## Installation
 
-`php artisan vendor:publish --provider="Jersyfi\Localization\LocalizationServiceProvider" --tag="config"`
-
-## How to use
-
-```html
-<link rel="canonical" href="{{ Localization::currentRouteDefaultLocaleURL() }}">
+You can install the package via composer
+```bash
+composer require jersyfi/laravel-localization
 ```
-
-```html
-@foreach(Localization::getLocalesWithoutDefault() as $locale)
-    <link rel="alternate" hreflang="{{ $locale }}" href="{{ Localization::currentRouteLocaleURL($locale) }}">
-@endforeach
+You need to publish the config file to customize the package
+```bash
+php artisan vendor:publish --provider="Jersyfi\Localization\LocalizationServiceProvider" --tag="config"
 ```
-
-```html
-Route::get('/', [LocaleController::class, 'localize'])
-    ->name('locale');
-```
-
-```html
-Route::prefix('{locale}')
-    ->middleware('locale')
-    ->group(function () {
-
-        // your localized routes
-
-    }
-```
-
-## Config
+The published config `localization`looks like so
 ```php
-<?php
-
 return [
 
     /**
@@ -67,6 +44,38 @@ return [
     'detect_locale' => false,
 
 ];
+```
+
+
+
+
+
+
+## How to use
+
+```html
+<link rel="canonical" href="{{ Localization::currentRouteDefaultLocaleURL() }}">
+```
+
+```html
+@foreach(Localization::getLocalesWithoutDefault() as $locale)
+    <link rel="alternate" hreflang="{{ $locale }}" href="{{ Localization::currentRouteLocaleURL($locale) }}">
+@endforeach
+```
+
+```html
+Route::get('/', [LocaleController::class, 'localize'])
+    ->name('locale');
+```
+
+```html
+Route::prefix('{locale}')
+    ->middleware('locale')
+    ->group(function () {
+
+        // your localized routes
+
+    }
 ```
 
 
