@@ -102,3 +102,17 @@ Return the current Route URL with default locale
 
 Check if the locales are valid
 `Localization::localeIsValid()`
+
+
+## Changelog
+
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+
+## Credits
+
+- [Jérôme Bastian Winkel](https://github.com/jersyfi)
+- [All Contributors](../../contributors)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
