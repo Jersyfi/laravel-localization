@@ -101,7 +101,7 @@ Check if the locales are valid
 
 ## Examples
 
-### Route to Home
+### Route to named routes
 
 We create a simple index Route named `home` calling whatever you want. In this example we call a Controller. Then you can call your route from whereever you want with `route('home')`.
 ```php
@@ -135,12 +135,22 @@ You need to call the helper function `Localization::currentRouteLocaleURL()` and
 To get all alternate links without the default locale you can call the helper function `Localization::getLocalesWithoutDefault()` inside a foreach loop. Inside the href of the html you can call the helper function `Localization::currentRouteLocaleURL()` and pass the `$locale` to it.
 ```html
 @foreach(Localization::getLocalesWithoutDefault() as $locale)
-    <link rel="alternate" hreflang="{{ $locale }}" href="{{ Localization::currentRouteLocaleURL($locale) }}">
+    <link rel="alternate" hreflang="{{ Localization::getLocalSlug($locale) }}" href="{{ Localization::currentRouteLocaleURL($locale) }}">
 @endforeach
 ```
 
 ### Create a language selector
 
+```html
+<div>{{ Localization::getLocalSlug() }}</div>
+<ul>
+    @foreach(Localization::getLocalesWithoutDefault() as $locale)
+        <li>
+            <a rel="nofollow" href="{{ Localization::currentLocaleRoute($locale) }}">{{ Localization::getLocalSlug($locale) }}</a>
+        </li>
+    @endforeach
+</ul>
+```
 
 
 ## Changelog
