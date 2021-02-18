@@ -46,7 +46,27 @@ return [
 ];
 ```
 
+## How to use
 
+### Routing
+
+You can redirect to the `default_locale` by accessing the `LocaleController` function called `localize` with the example:
+```php
+Route::get('/', [LocaleController::class, 'localize'])
+    ->name('locale');
+```
+
+To group a route it is the easiest way to set a prefix named `{locale}` together with the middleware `locale`.
+Inside this group you can set your own localized routes.
+An example to get this localized route group:
+```php
+Route::prefix('{locale}')
+    ->middleware('locale')
+    ->group(function () {
+
+        // your localized routes here
+    });
+```
 
 
 
@@ -62,22 +82,6 @@ return [
     <link rel="alternate" hreflang="{{ $locale }}" href="{{ Localization::currentRouteLocaleURL($locale) }}">
 @endforeach
 ```
-
-```html
-Route::get('/', [LocaleController::class, 'localize'])
-    ->name('locale');
-```
-
-```html
-Route::prefix('{locale}')
-    ->middleware('locale')
-    ->group(function () {
-
-        // your localized routes
-
-    }
-```
-
 
 ## All functions
 
@@ -104,6 +108,8 @@ Check if the locales are valid
 `Localization::localeIsValid()`
 
 
+
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
@@ -115,4 +121,4 @@ Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recen
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
