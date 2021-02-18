@@ -1,6 +1,7 @@
 # laravel-localization
 
 ![Coveralls github](https://img.shields.io/coveralls/github/jersyfi/laravel-localization)
+![Packagist Downloads](https://img.shields.io/packagist/dm/jersyfi/laravel-localization)
 
 ## Initialise
 
