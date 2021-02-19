@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-localization` will be documented in this file
 
+## 1.7.0 - 2020-02-19
+
+- Added `Localization::getLocalesWithoutCurrent` for language switcher
+- Edited the Docuemntation
+
 ## 1.6.0 - 2020-02-18
 
 - Added `Localization::getLocaleSlug` to replace seperator
