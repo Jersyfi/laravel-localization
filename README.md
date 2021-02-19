@@ -78,8 +78,8 @@ Route::prefix('{locale}')
 
 The helpers can be accesed directly by aliases or by facades.
 `Localization::`
-\nor
-\n`app('localization')->`
+or
+`app('localization')->`
 
 Return the given locale or the app locale with replaced separator
 ```php
