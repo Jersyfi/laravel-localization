@@ -81,6 +81,11 @@ The helpers can be accesed directly by aliases or by facades.
 \nor
 \n`app('localization')->`
 
+Return the given locale or the app locale with replaced separator
+```php
+Localization::getLocaleSlug()
+```
+
 Return all available locales
 ```php
 Localization::getLocales()
@@ -94,6 +99,11 @@ Localization::getDefaultLocale()
 Return all available locales without the default locale.
 ```php
 Localization::getLocalesWithoutDefault()
+```
+
+Return all available locales without the current locale.
+```php
+Localization::getLocalesWithoutCurrent()
 ```
 
 Return the current Route URL with different locale
@@ -143,23 +153,22 @@ You need to call the helper function `Localization::currentRouteDefaultLocaleURL
 
 ### Create alternate links
 
-You need to call the helper function `Localization::currentRouteLocaleURL()` and pass the `$locale` you want to get the link for
-
 To get all alternate links without the default locale you can call the helper function `Localization::getLocalesWithoutDefault()` inside a foreach loop. Inside the href of the html you can call the helper function `Localization::currentRouteLocaleURL()` and pass the `$locale` to it.
 ```html
 @foreach(Localization::getLocalesWithoutDefault() as $locale)
-    <link rel="alternate" hreflang="{{ Localization::getLocalSlug($locale) }}" href="{{ Localization::currentRouteLocaleURL($locale) }}">
+    <link rel="alternate" hreflang="{{ Localization::getLocaleSlug($locale) }}" href="{{ Localization::currentRouteLocaleURL($locale) }}">
 @endforeach
 ```
 
 ### Create a language selector
 
+When you want to create a language selector first you need the current locale slug. For this you can call the helper function `Localization::getLocaleSlug()`. To loop the other locales you can decide if you want to display all available locales with `Localization::getLocales()` or if you want to display the available locales without the current locale with `Localization::getLocalesWithoutCurrent()`. Inside the foreach loop you can call the helper function `Localization::currentRouteLocaleURL($locale)` to get the link and `Localization::getLocalSlug($locale)` for the locale slug.
 ```html
-<div>{{ Localization::getLocalSlug() }}</div>
+<div>{{ Localization::getLocaleSlug() }}</div>
 <ul>
-    @foreach(Localization::getLocalesWithoutDefault() as $locale)
+    @foreach(Localization::getLocalesWithoutCurrent() as $locale)
         <li>
-            <a rel="nofollow" href="{{ Localization::currentLocaleRoute($locale) }}">{{ Localization::getLocalSlug($locale) }}</a>
+            <a href="{{ Localization::currentRouteLocaleURL($locale) }}">{{ Localization::getLocalSlug($locale) }}</a>
         </li>
     @endforeach
 </ul>
