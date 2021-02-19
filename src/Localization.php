@@ -72,7 +72,23 @@ class Localization
 
         return $array;
     }
+    
+    /**
+     * Return all available locales without the current locale.
+     * 
+     * @return array
+     */
+    public function getLocalesWithoutCurrent(): array
+    {
+        foreach ($array = $this->getLocales() as $key => $value) {
+            if ($value == App::getLocale()) {
+                unset($array[$key]);
+            }
+        }
 
+        return $array;
+    }
+    
     /**
      * Return the current Route URL with different locale
      * 
