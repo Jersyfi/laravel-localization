@@ -15,7 +15,7 @@ You need to publish the config file to customize the package
 ```bash
 php artisan vendor:publish --provider="Jersyfi\Localization\LocalizationServiceProvider" --tag="config"
 ```
-The published config `localization`looks like so
+The published config `localization` looks like so
 ```php
 return [
 
@@ -59,6 +59,8 @@ The middleware is using `redirect_default` to redirect any request when the requ
 
 You can redirect to the `default_locale` by accessing the `LocaleController` function called `localize` with the example:
 ```php
+use Jersyfi\Localization\Http\Controllers\LocaleController;
+
 Route::get('/', [LocaleController::class, 'localize'])
     ->name('locale');
 ```
@@ -76,49 +78,85 @@ Route::prefix('{locale}')
 
 ### Helpers
 
-The helpers can be accesed directly by aliases or by facades.
-`Localization::`
-or
-`app('localization')->`
+The helpers can be accesed directly by aliases or by facades. When using aliases in your controller you need to include `use Localization`. The facade can be accessed by calling simply `app('localization')`.
 
 Return the given locale or the app locale with replaced separator
 ```php
-Localization::getLocaleSlug()
+Localization::getLocaleSlug();
+app('localization')->getLocaleSlug();
+
+$slug = Localization::getLocaleSlug('en_GB'); // en-gb
+
+// When you leave it empty it returns the current locale slug
+// In this example output current locale is 'de'
+$slug = Localization::getLocaleSlug(); // de
 ```
 
 Return all available locales
 ```php
-Localization::getLocales()
+Localization::getLocales();
+app('localization')->getLocales();
+
+$locales = Localization::getLocales(); // ['en', 'de']
 ```
 
-Return application locale
+Return application default locale
 ```php
-Localization::getDefaultLocale()
+Localization::getDefaultLocale();
+app('localization')->getDefaultLocale();
+
+$locale = Localization::getDefaultLocale(); // de
 ```
 
 Return all available locales without the default locale.
 ```php
-Localization::getLocalesWithoutDefault()
+Localization::getLocalesWithoutDefault();
+app('localization')->getLocalesWithoutDefault();
+
+$locales = Localization::getLocalesWithoutDefault(); // ['en']
 ```
 
 Return all available locales without the current locale.
 ```php
-Localization::getLocalesWithoutCurrent()
+Localization::getLocalesWithoutCurrent();
+app('localization')->getLocalesWithoutCurrent();
+
+// In this example output current locale is 'en'
+$locales = Localization::getLocalesWithoutCurrent(); // ['de']
 ```
 
 Return the current Route URL with different locale
 ```php
-Localization::currentRouteLocaleURL()
+Localization::currentRouteLocaleURL();
+app('localization')->currentRouteLocaleURL();
+
+// It is replacing the routes parameter {locale} with locale you want
+// Current route url 'https://test.de/de/home'
+$url = Localization::currentRouteLocaleURL('en'); // https://test.de/en/home
 ```
 
 Return the current Route URL with default locale
 ```php
-Localization::currentRouteDefaultLocaleURL()
+Localization::currentRouteDefaultLocaleURL();
+app('localization')->currentRouteDefaultLocaleURL();
+
+// Every route get returned with the default locale set in the config
+// Current route url 'https://test.de/en/home'
+// Or current route url 'https://test.de/de/home'
+// Returns both with the same
+$url = Localization::currentRouteDefaultLocaleURL(); // https://test.de/de/home
 ```
 
 Check if the locales are valid
 ```php
-Localization::localeIsValid()
+Localization::localeIsValid();
+app('localization')->localeIsValid();
+
+$valid = Localization::localeIsValid('de'); // true
+
+$valid = Localization::localeIsValid('de', 'en'); // true
+
+$valid = Localization::localeIsValid('de', 'sp'); // false
 ```
 
 
