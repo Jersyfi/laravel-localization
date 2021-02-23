@@ -2,12 +2,17 @@
 
 All notable changes to `laravel-localization` will be documented in this file
 
-## 1.7.0 - 2020-02-19
+## 1.7.1 - 2021-02-23
+
+- Edited the docuemntation helper functions with useful examples
+- Dreamed of falling back to the year 2020 in here
+
+## 1.7.0 - 2021-02-19
 
 - Added `Localization::getLocalesWithoutCurrent` for language switcher
 - Edited the Docuemntation
 
-## 1.6.0 - 2020-02-18
+## 1.6.0 - 2021-02-18
 
 - Added `Localization::getLocaleSlug` to replace seperator
 
