@@ -24,8 +24,7 @@ class Localization
     /**
      * Return the given locale or the app locale with replaced separator
      * 
-     * @param string locale
-     *
+     * @param string $locale
      * @return string
      */
     public function getLocaleSlug(string $locale = null): string
@@ -90,11 +89,25 @@ class Localization
     }
     
     /**
+     * Return the current Route URL
+     * 
+     * @return string
+     */
+    public function currentRouteURL(): string
+    {
+        $route = Route::current();
+
+        return route(
+            $route->getName(),
+            $route->parameters
+        );
+    }
+    
+    /**
      * Return the current Route URL with different locale
      * 
-     * @param string locale
-     * 
-     * @return string url
+     * @param string $locale
+     * @return string
      */
     public function currentRouteLocaleURL(string $locale): string
     {
@@ -121,8 +134,7 @@ class Localization
     /**
      * Check if the locales are valid
      *
-     * @param array locales
-     *
+     * @param array $locales
      * @return bool
      */
     public function localeIsValid(...$locales): bool
@@ -141,9 +153,9 @@ class Localization
     /**
      * Check if the Locales are defined
      * 
-     * @throws LocalesNotDefined
+     * @throws LocalesNotDefined::class
      */
-    private function configHasLocales()
+    protected function configHasLocales()
     {
         if (count($this->getLocales()) < 1) {
             throw LocalesNotDefined::make();
@@ -153,9 +165,9 @@ class Localization
     /**
      * Check if the App locale is in Locales
      * 
-     * @throws UnsupportedLocale
+     * @throws UnsupportedLocale::class
      */
-    private function localesHasDefaultLocale()
+    protected function localesHasDefaultLocale()
     {
         if (!$this->localeIsValid($this->getDefaultLocale(), config('app.locale'))) {
             throw UnsupportedLocale::make();
