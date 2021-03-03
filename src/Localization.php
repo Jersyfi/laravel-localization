@@ -95,11 +95,8 @@ class Localization
      */
     public function currentRouteURL(): string
     {
-        $route = Route::current();
-
-        return route(
-            $route->getName(),
-            $route->parameters
+        return $this->currentRouteLocaleURL(
+            App::getLocale()
         );
     }
     
