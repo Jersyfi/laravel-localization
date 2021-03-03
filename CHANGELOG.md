@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-localization` will be documented in this file
 
+## 1.8.0 - 2021-03-03
+
+- `Localization::currentRouteURL()` to get the current route url
+- changed private functions to protected
+- changed function descirptions
+
 ## 1.7.1 - 2021-02-23
 
 - Edited the docuemntation helper functions with useful examples
