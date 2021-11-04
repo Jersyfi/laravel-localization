@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-localization` will be documented in this file
 
+## 2.0.1 - 2021-11-04
+
+- Fixed wrong migration file path in service provider
+- Fixed wrong namespace in middleware
+
 ## 2.0.0 - 2021-11-04
 
 - Added middleware to save changing language to users database table
