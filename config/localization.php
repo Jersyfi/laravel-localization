@@ -23,8 +23,16 @@ return [
 
     /**
      * Detect user locale via http header
-     * When no locale is stored in session user gets redirected
+     * When no locale is stored in session or in auth users database user gets redirected
      */
     'detect_locale' => false,
+    
+    /**
+     * 
+     */
+    'database' => [
+        'users_table_name' => 'users',
+        'prefered_locale_columne_name' => 'prefered_locale',
+    ],
 
 ];
