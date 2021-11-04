@@ -36,6 +36,15 @@ class LocalizationServiceProvider extends ServiceProvider
      */
     public function boot(Kernel $kernel)
     {
+        if ($this->app->runningInConsole()) {
+            // Export the migration
+            if (! class_exists('UpdateUsersTable')) {
+                $this->publishes([
+                    __DIR__ . '/../database/migrations/update_users_table.php' => database_path('migrations/' . date('Y_m_d_His', time()) . '_update_users_table.php'),
+                ], 'migrations');
+            }
+        }
+        
         // Publish Configuration File
         $this->publishes([
             __DIR__.'/../config/localization.php' => config_path('localization.php'),
