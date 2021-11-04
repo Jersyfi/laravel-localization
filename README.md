@@ -95,31 +95,28 @@ Route::prefix('{locale}')
 
 The helpers can be accesed directly by aliases or by facades. When using aliases in your controller you need to include `use Localization`.
 
-Return the given locale or the app locale with replaced separator
+Return the given locale or the current app locale with replaced separator.
 ```php
 $slug = Localization::getLocaleSlug('en_GB'); // en-gb
-
-// When you leave it empty it returns the current locale slug
-// In this example output current locale is 'de'
 $slug = Localization::getLocaleSlug(); // de
 ```
 
-Return all available locales
+Return all available locales set in the localization config.
 ```php
 $locales = Localization::getLocales(); // ['en', 'de']
 ```
 
-Return application default locale
+Return application default locale set in the localization config.
 ```php
 $locale = Localization::getDefaultLocale(); // de
 ```
 
-Return all available locales without the default locale.
+Return all available locales from localization config without the default locale.
 ```php
 $locales = Localization::getLocalesWithoutDefault(); // ['en']
 ```
 
-Return all available locales without the current locale.
+Return all available locales from localization config without the current locale.
 ```php
 // In this example output current locale is 'en'
 $locales = Localization::getLocalesWithoutCurrent(); // ['de']
@@ -127,23 +124,17 @@ $locales = Localization::getLocalesWithoutCurrent(); // ['de']
 
 Return the current Route URL
 ```php
-// Current route url 'https://test.de/de/home'
 $url = Localization::currentRouteLocaleURL(); // https://test.de/de/home
 ```
 
-Return the current Route URL with different locale
+Return the current Route URL with any different locale set in the localization config.
+The function replaces the {locale} set in routes with the given locale.
 ```php
-// It is replacing the routes parameter {locale} with locale you want
-// Current route url 'https://test.de/de/home'
 $url = Localization::currentRouteLocaleURL('en'); // https://test.de/en/home
 ```
 
-Return the current Route URL with default locale
+Return the current Route URL with default locale set in the localization config.
 ```php
-// Every route get returned with the default locale set in the config
-// Current route url 'https://test.de/en/home'
-// Or current route url 'https://test.de/de/home'
-// Returns both with the same
 $url = Localization::currentRouteDefaultLocaleURL(); // https://test.de/de/home
 ```
 
