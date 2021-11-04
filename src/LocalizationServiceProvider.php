@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Routing\Router;
 use Jersyfi\Localization\Http\Middleware\Locale;
-use Jersyfi\Localization\Http\Middleware\UpdateUserLocale;
 use Jersyfi\Localization\Console\InstallLocalization;
 
 class LocalizationServiceProvider extends ServiceProvider
@@ -44,7 +43,5 @@ class LocalizationServiceProvider extends ServiceProvider
         // Boot Middleware
         $router = $this->app->make(Router::class);
         $router->aliasMiddleware('locale', Locale::class);
-        
-        $kernel->pushMiddleware(UpdateUserLocale::class);
     }
 }
