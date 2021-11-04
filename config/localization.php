@@ -10,6 +10,7 @@ return [
 
     /**
      * Application locales determines all locals that exists in the application
+     * You can ignore or delete the locales from app.locales if you set some
      */
     'locales' => [
         'en',
