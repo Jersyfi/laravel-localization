@@ -39,7 +39,7 @@ return [
      */
     'database' => [
         'users_table_name' => 'users',
-        'prefered_locale_columne_name' => 'prefered_locale',
+        'prefered_locale_column_name' => 'prefered_locale',
     ],
 
 ];
