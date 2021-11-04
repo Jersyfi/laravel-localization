@@ -19,10 +19,14 @@ class UpdateUserLocale
     public function handle($request, Closure $next)
     {
         $response = $next($request);
-
-        if (Auth::check()) {
-            Auth::user()->prefered_locale = App::getLocale();
-            Auth::user()->save();
+        
+        if (config('localization.store_users_database')) {
+            if (Auth::check()) {
+                $preferedLocale = config('localization.database.prefered_locale_column_name');
+                
+                Auth::user()->$preferedLocale = App::getLocale();
+                Auth::user()->save();
+            }
         }
 
         return $response;
