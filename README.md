@@ -94,6 +94,7 @@ Route::prefix('{locale}')
 ### Helpers
 
 The helpers can be accesed directly by aliases or by facades. When using aliases in your controller you need to include `use Localization`.
+In below examples the used values are from the above config file so that you can compare it.
 
 Return the given locale or the current app locale with replaced separator.
 ```php
@@ -118,7 +119,6 @@ $locales = Localization::getLocalesWithoutDefault(); // ['en']
 
 Return all available locales from localization config without the current locale.
 ```php
-// In this example output current locale is 'en'
 $locales = Localization::getLocalesWithoutCurrent(); // ['de']
 ```
 
