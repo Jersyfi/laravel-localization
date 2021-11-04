@@ -2,6 +2,13 @@
 
 All notable changes to `laravel-localization` will be documented in this file
 
+## 2.0.0 - 2021-11-04
+
+- Added middleware to save changing language to users database table
+- Added Function to check if the users database table is corrupted
+- Changed Service provider to push middleware
+- Changed documentation
+
 ## 1.8.2 - 2021-03-03
 
 - Suggest to use spatie/laravel-translatable
