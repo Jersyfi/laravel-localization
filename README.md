@@ -8,14 +8,25 @@
 ## Installation
 
 You can install the package via composer
+
 ```bash
 composer require jersyfi/laravel-localization
 ```
+
 You need to publish the config file to customize the package
+
 ```bash
 php artisan vendor:publish --provider="Jersyfi\Localization\LocalizationServiceProvider" --tag="config"
 ```
+
+You have the option to publish a migration file for adding a customizable column to a users table for storing the current locale for a logged in user. This is usefull if your application wants to send emails to every user.
+
+```bash
+php artisan vendor:publish --provider="Jersyfi\Localization\LocalizationServiceProvider" --tag="migrations"
+```
+
 The published config `localization` looks like so
+
 ```php
 return [
 
