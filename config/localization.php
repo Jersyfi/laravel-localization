@@ -23,12 +23,18 @@ return [
 
     /**
      * Detect user locale via http header
-     * When no locale is stored in session or in auth users database user gets redirected
+     * When no locale is stored in session or in auth users database table user gets redirected
      */
     'detect_locale' => false,
     
     /**
-     * 
+     * Application can store the prefered_locale in the users database table
+     */
+    'store_users_database' => true,
+    
+    /**
+     * Setup for the users database table
+     * Only if 'store_users_database' is set to true
      */
     'database' => [
         'users_table_name' => 'users',
