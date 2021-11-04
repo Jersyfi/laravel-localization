@@ -3,11 +3,12 @@
 namespace Jersyfi\Localization;
 
 use Illuminate\Http\Request;
+use App;
+use Illuminate\Support\Facades\Route;
 use Jersyfi\Localization\Exceptions\LocalesNotDefined;
 use Jersyfi\Localization\Exceptions\UnsupportedLocale;
-use Illuminate\Support\Facades\Route;
-use Arr;
-use App;
+use Jersyfi\Localization\Exceptions\UsersDatabaseCorreupted;
+use Illuminate\Support\Facades\Schema;
 
 class Localization
 {
@@ -19,6 +20,7 @@ class Localization
 
         $this->configHasLocales();
         $this->localesHasDefaultLocale();
+        $this->usersDatabaseHasDetails();
     }
     
     /**
@@ -168,6 +170,25 @@ class Localization
     {
         if (!$this->localeIsValid($this->getDefaultLocale(), config('app.locale'))) {
             throw UnsupportedLocale::make();
+        }
+    }
+    
+    /**
+     * Check if the users database is currupted
+     * 
+     * @throws UsersDatabaseCorreupted::class
+     */
+    protected function usersDatabaseHasDetails()
+    {
+        if (
+            !config('localization.store_users_database')
+            &&
+            !Schema::hasColumn(
+                config('localization.database.users_table_name'),
+                config('localization.database.prefered_locale_column_name')
+            )
+        ) {
+            throw UsersDatabaseCorreupted::make();
         }
     }
 }
