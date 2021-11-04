@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Jersyfi\Localization\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Closure;
