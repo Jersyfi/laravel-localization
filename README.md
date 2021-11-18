@@ -135,7 +135,7 @@ $locales = Localization::getLocalesWithoutCurrent(); // ['de']
 
 Return the current Route URL
 ```php
-$url = Localization::currentRouteLocaleURL(); // https://test.de/de/home
+$url = Localization::currentRouteURL(); // https://test.de/de/home
 ```
 
 Return the current Route URL with any different locale set in the localization config.
