@@ -103,6 +103,16 @@ class Localization
     }
     
     /**
+     * Return the current Route URL with default locale
+     * 
+     * @return string url
+     */
+    public function currentRouteDefaultLocaleURL(): string
+    {
+        return $this->currentRouteLocaleURL($this->getDefaultLocale());
+    }
+    
+    /**
      * Return the current Route URL with different locale
      * 
      * @param string $locale
@@ -113,21 +123,15 @@ class Localization
         $route = Route::current();
         $params = $route->parameters;
         $params['locale'] = $locale;
+        $query = str_replace(
+            ['%5B', '%5D', '%2C'], ['[', ']', ','],
+            $this->request->getQueryString()
+        );
 
         return route(
             $route->getName(),
             $params
-        );
-    }
-
-    /**
-     * Return the current Route URL with default locale
-     * 
-     * @return string url
-     */
-    public function currentRouteDefaultLocaleURL(): string
-    {
-        return $this->currentRouteLocaleURL($this->getDefaultLocale());
+        ) . ($query != '' ? '?' . $query : '');
     }
 
     /**
