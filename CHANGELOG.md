@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-localization` will be documented in this file
 
+## 2.1.0 - 2021-11-19
+- Added query string to the localized route
+- Changed documentation
+
 ## 2.0.1 - 2021-11-04
 
 - Fixed wrong migration file path in service provider
